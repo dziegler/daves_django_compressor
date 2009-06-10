@@ -2,7 +2,7 @@ from django import template
 from django.core.cache import cache
 from compressor import CssCompressor, JsCompressor
 from compressor.conf import settings
-
+from BeautifulSoup import BeautifulSoup
 
 register = template.Library()
 
@@ -24,6 +24,11 @@ class CompressorNode(template.Node):
             return in_cache
         else:
             output = compressor.output()
+            #soup = BeautifulSoup(output)
+            #if self.kind == 'css':
+            #    output = soup.link['href']
+            #elif self.kind == 'js':
+            #    output = soup.script['src']
             cache.set(compressor.cachekey, output, 86400) # rebuilds the cache once a day if nothign has changed.
             return output
 

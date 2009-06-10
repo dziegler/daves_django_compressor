@@ -29,10 +29,10 @@ class Compressor(object):
 
     def __init__(self, content, ouput_prefix="compressed"):
         self.content = content
-        self.type = None
         self.ouput_prefix = ouput_prefix
         self.split_content = []
         self.soup = BeautifulSoup(self.content)
+        
 
     def content_hash(self):
         """docstring for content_hash"""
