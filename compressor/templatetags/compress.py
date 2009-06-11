@@ -24,11 +24,11 @@ class CompressorNode(template.Node):
             return in_cache
         else:
             output = compressor.output()
-            #soup = BeautifulSoup(output)
-            #if self.kind == 'css':
-            #    output = soup.link['href']
-            #elif self.kind == 'js':
-            #    output = soup.script['src']
+            soup = BeautifulSoup(output)
+            if self.kind == 'css':
+                output = soup.link['href']
+            elif self.kind == 'js':
+                output = soup.script['src']
             cache.set(compressor.cachekey, output, 86400) # rebuilds the cache once a day if nothign has changed.
             return output
 
