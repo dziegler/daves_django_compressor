@@ -17,7 +17,7 @@ class YUICompressorFilter(FilterBase):
         if self.type == 'css':
             arguments = CSS_ARGUMENTS
             
-        command = '%s --type=%s %s' % (BINARY, type_, arguments)
+        command = '%s --type=%s %s' % (BINARY, self.type, arguments)
 
         if self.verbose:
             command += ' --verbose'
