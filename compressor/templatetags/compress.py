@@ -14,7 +14,12 @@ class CompressorNode(template.Node):
     def render(self, context):
         content = self.nodelist.render(context)
         if not settings.COMPRESS:
-            return content
+            soup = BeautifulSoup(content)
+            if self.kind == 'css':
+                output = soup.link['href']
+            elif self.kind == 'js':
+                output = soup.script['src']
+            return output 
         if self.kind == 'css':
             compressor = CssCompressor(content)
         if self.kind == 'js':
